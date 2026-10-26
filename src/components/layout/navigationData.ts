@@ -145,7 +145,7 @@ export const linkGroups: SideBarLinkGroup[] = [
     group_name: "المحتوى والتسويق",
     links: [
       {
-        link_name: "المدونات والمقالات الترويجية",
+        link_name: "المقالات",
         path: "/dashboard/blogs",
         icon: BsPostcardFill,
       },
@@ -155,9 +155,25 @@ export const linkGroups: SideBarLinkGroup[] = [
         icon: TfiMore,
       },
       {
+        link_name: "المدن",
+        path: "/dashboard/cities",
+        icon: FaCity,
+      },
+    ],
+  },
+  {
+    group_name: "الإعدادات",
+    links: [
+      {
+        link_name: "الإعدادات العامة",
+        path: "/dashboard/global-settings",
+        icon: FaGear,
+      },
+      
+      {
         link_name: "الملف الشخصي",
         path: "/dashboard/profile",
-        icon: FaGear,
+        icon: FaTableCellsLarge,
       },
     ],
   },
