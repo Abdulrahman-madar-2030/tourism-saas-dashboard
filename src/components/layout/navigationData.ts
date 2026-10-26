@@ -19,7 +19,7 @@ import {
   FaChartPie,
   FaTableCellsLarge,
 } from "react-icons/fa6";
-import { FaExclamationTriangle, FaClipboardList } from "react-icons/fa";
+import { FaExclamationTriangle, FaClipboardList, FaCar } from "react-icons/fa";
 import { TfiMore } from "react-icons/tfi";
 import { BsPostcardFill } from "react-icons/bs";
 import { SlSocialInstagram } from "react-icons/sl";
@@ -116,6 +116,11 @@ export const linkGroups: SideBarLinkGroup[] = [
         link_name: "إدارة الجولات السياحية",
         path: "/dashboard/tours",
         icon: FaMapLocationDot,
+      },
+      {
+        link_name: "الخدمات",
+        path: "/dashboard/other",
+        icon: FaCar,
       },
       {
         link_name: "طلبات وبلاغات الحجز",
