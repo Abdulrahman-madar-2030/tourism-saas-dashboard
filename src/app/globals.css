@@ -1,0 +1,308 @@
+@import "tailwindcss";
+
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* ========================================
+   shadcn-inspired Design Tokens
+   ======================================== */
+@theme {
+  /* Brand Colors */
+  --color-primary: #4338ca;
+  --color-primary-foreground: #ffffff;
+
+  /* Base Colors */
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+
+  /* Muted/Secondary */
+  --color-secondary: #f8fafc;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+
+  /* Borders & Rings */
+  --color-border: #e2e8f0;
+  --color-ring: #4f46e5;
+
+  /* Accent & Hover */
+  --color-accent: #eef2ff;
+  --color-accent-foreground: #4338ca;
+
+  /* Semantic Colors */
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Animation */
+  --animate-shimmer: animate-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    font-family:
+      var(--font-almarai),
+      "Inter",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ========================================
+   Component Styles
+   ======================================== */
+@layer components {
+  /* Modern Dashboard Background Squares Grid (Soft, Lighter & Neutral) */
+  .dashboard-grid-pattern {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  }
+
+  /* Sidebar Navigation */
+  .side-bar-link {
+    @apply py-2.5 px-4 mx-2 flex items-center gap-3 rounded-lg text-sm font-medium;
+    @apply text-muted-foreground hover:text-foreground hover:bg-accent;
+    @apply transition-all duration-200 ease-out;
+  }
+
+  .side-bar-link:hover {
+    @apply bg-accent text-foreground;
+  }
+
+  .active {
+    @apply bg-primary/10 text-primary font-semibold;
+    @apply border-r-2 border-primary;
+  }
+
+  .active:hover {
+    @apply bg-primary/15 text-primary;
+  }
+
+  /* Form Elements */
+  .form-input {
+    @apply block w-full px-3 py-2 text-sm rounded-lg border border-border bg-background;
+    @apply placeholder:text-muted-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring/20 focus:border-primary;
+    @apply transition-all duration-200;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-foreground mb-1.5;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-background rounded-xl border border-border;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-header {
+    @apply px-6 py-4 border-b border-border;
+  }
+
+  .card-content {
+    @apply p-6;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-lg;
+    @apply transition-all duration-200 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring/20 focus:ring-offset-2;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-foreground border border-border hover:bg-accent;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-foreground hover:bg-accent;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+  }
+
+  /* Rich Text Editor */
+  .ProseMirror {
+    @apply h-full min-h-[200px] p-4;
+    direction: inherit;
+  }
+
+  .ProseMirror:focus {
+    @apply outline-none ring-0;
+  }
+
+  .ProseMirror h1 {
+    @apply text-3xl font-extrabold mb-4 mt-6 text-foreground;
+  }
+
+  .ProseMirror h2 {
+    @apply text-2xl font-bold mb-3 mt-5 text-foreground;
+  }
+
+  .ProseMirror h3 {
+    @apply text-xl font-bold mb-2 mt-4 text-foreground;
+  }
+
+  .ProseMirror p {
+    @apply mb-3 leading-relaxed;
+  }
+
+  .ProseMirror ul {
+    @apply list-disc ps-6 mb-4 space-y-1;
+  }
+
+  .ProseMirror ol {
+    @apply list-decimal ps-6 mb-4 space-y-1;
+  }
+
+  .ProseMirror blockquote {
+    @apply border-s-4 border-primary/30 ps-4 py-2 my-4 italic text-muted-foreground bg-muted/30 rounded-e-lg;
+  }
+
+  .ProseMirror img {
+    @apply max-w-full h-auto rounded-xl my-4 shadow-sm;
+  }
+
+  .ProseMirror pre {
+    @apply bg-muted text-foreground p-4 rounded-lg my-4 font-mono text-sm overflow-x-auto;
+  }
+
+  .ProseMirror code {
+    @apply bg-muted text-primary px-1.5 py-0.5 rounded-md font-mono text-[0.9em];
+  }
+
+  /* Placeholder */
+  .ProseMirror p.is-editor-empty:first-child::before {
+    @apply text-muted-foreground/60 h-0 float-right pointer-events-none;
+    content: attr(data-placeholder);
+  }
+
+  /* Spinner */
+  .spinner {
+    @apply animate-spin rounded-full h-5 w-5 border-2 border-primary border-t-transparent;
+  }
+
+  /* Scrollbar */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-muted-foreground);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+
+  /* Container */
+  .container {
+    margin: 0 auto;
+    padding-inline: 2rem;
+    padding-block: 1.5rem;
+    max-width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-inline: 2.5rem;
+      padding-block: 2rem;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px;
+    }
+  }
+
+  /* No Scrollbar Utility */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Animation Utilities */
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-out;
+  }
+}

@@ -1,0 +1,62 @@
+name: Deploy Gadda Dashboard
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: gadda-dashboard-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy Dashboard to VPS
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          timeout: 2m
+          command_timeout: 20m
+
+          script: |
+            set -e
+
+            export NVM_DIR="$HOME/.nvm"
+            if [ -s "$NVM_DIR/nvm.sh" ]; then
+              . "$NVM_DIR/nvm.sh"
+            fi
+
+            cd /home/deploy/almounafis-gadda-dashboard
+
+            echo "=== Node and npm versions ==="
+            node -v
+            npm -v
+
+            echo "=== Pull latest code ==="
+            git pull --ff-only origin main
+
+            echo "=== Install dependencies ==="
+            npm ci
+
+            echo "=== Build dashboard ==="
+            npm run build
+
+            echo "=== Verify build output ==="
+            test -d .next
+
+            echo "=== Restart dashboard ==="
+            pm2 restart almounafis-dashboard --update-env
+
+            echo "=== Save PM2 state ==="
+            pm2 save
+
+            echo "=== Check status ==="
+            pm2 status almounafis-dashboard
+
+            echo "Dashboard deployment completed."
