@@ -168,43 +168,7 @@ export default function Login() {
         aria-hidden="true"
         className="pointer-events-none absolute bottom-10 left-10 w-[30rem] h-[30rem] rounded-full bg-blue-500/10 blur-3xl"
       />
-
-      {/* Top Navbar */}
-      <header className="relative z-20 w-full px-6 lg:px-12 py-5 flex items-center justify-between border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
-        {/* Brand Logo & Name */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600 shadow-xs">
-            <TbBeach className="h-6 w-6 text-indigo-600" />
-          </div>
-          <div className="text-right">
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-black tracking-tight text-slate-900">
-                Tourism SaaS
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-[10px] font-black uppercase tracking-wider">
-                SUPER ADMIN
-              </span>
-            </div>
-            <span className="block text-xs font-semibold text-slate-500">
-              منصة السياحة الذكية
-            </span>
-          </div>
-        </div>
-
-        {/* Global Cloud Telemetry Pill */}
-        <div className="flex items-center gap-2.5">
-          <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e6fbf3] border border-emerald-200/80 text-xs font-bold text-emerald-700 shadow-2xs">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>سحابي متصل (Multi-Tenant v3.2)</span>
-          </div>
-
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-bold">
-            <HiShieldCheck className="w-4 h-4 text-indigo-600" />
-            <span>مشفر 256-bit</span>
-          </div>
-        </div>
-      </header>
-
+ 
       {/* Main Content Area: Split 2-Column Showcase */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 lg:py-12 flex-1 flex items-center">
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -322,22 +286,6 @@ export default function Login() {
                 <span className="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-100 text-[10px] font-bold text-emerald-700">
                   حماية 100%
                 </span>
-              </div>
-            </div>
-
-            {/* Live Stats Counter Bar */}
-            <div className="pt-2 grid grid-cols-3 gap-3 border-t border-slate-200/70">
-              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 text-center">
-                <p className="text-base font-black text-slate-800">1,458</p>
-                <p className="text-[11px] font-semibold text-slate-400 mt-0.5">باقة سياحية نشطة</p>
-              </div>
-              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 text-center">
-                <p className="text-base font-black text-emerald-600">47</p>
-                <p className="text-[11px] font-semibold text-slate-400 mt-0.5">فندق ومنتجع معتمد</p>
-              </div>
-              <div className="p-3 rounded-2xl bg-white border border-slate-200/80 text-center">
-                <p className="text-base font-black text-indigo-600">Multi-Tenant</p>
-                <p className="text-[11px] font-semibold text-slate-400 mt-0.5">إدارة متعددة الوكالات</p>
               </div>
             </div>
           </div>
@@ -535,20 +483,6 @@ export default function Login() {
 
         </div>
       </div>
-
-      {/* Bottom Global Status Bar */}
-      <footer className="relative z-20 w-full border-t border-slate-200/70 bg-white/80 backdrop-blur-md px-6 lg:px-12 py-3.5 text-center sm:flex sm:items-center sm:justify-between text-xs text-slate-500">
-        <div className="flex items-center justify-center gap-4 font-medium">
-          <span>Tourism SaaS Enterprise Edition</span>
-          <span>•</span>
-          <span>Multi-Tenant Architecture</span>
-          <span>•</span>
-          <span className="text-emerald-600 font-bold">SOC2 & ISO 27001 Ready</span>
-        </div>
-        <p className="mt-1 sm:mt-0 text-[11px] text-slate-400">
-          جميع الحقوق محفوظة &copy; {new Date().getFullYear()} لمنظومة إدارة قطاع السياحة والسفر
-        </p>
-      </footer>
     </main>
   );
 }
